@@ -53,7 +53,7 @@ class _homeScreenState extends State<homeScreen> {
 
     authProvider = Provider.of<AuthProvider>(context, listen: false);
     // userIdutils = Preferences.getUserId();
-
+     authProvider!.getfetchMessage("6579a7ebd061789450e4ae19", context);
     getuserDetails();
     saveToken();
     getuserDetailsfromid();
@@ -522,7 +522,7 @@ class _homeScreenState extends State<homeScreen> {
             Container(
               height: MediaQuery.of(context).size.height /
                   4,
-              child: authProvider!.conversationDetailsList!.length==null?Text("No Converesation"): ListView.builder(
+              child: authProvider!.conversationDetailsList==null?Text("No Converesation"): ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: authProvider!.conversationDetailsList!.length,
                 // Use usersList instead of userList
@@ -614,7 +614,7 @@ class _homeScreenState extends State<homeScreen> {
 
             Expanded(
               child: ListView.builder(
-                // itemCount: messagesList.length,
+                itemCount: authProvider!.messagelist!.length,
                 itemBuilder: (context, index) {
                   // final isCurrentUserMessage =
                   // messagesList[index].startsWith('You');
@@ -631,8 +631,8 @@ class _homeScreenState extends State<homeScreen> {
                        /* isCurrentUserMessage ? Colors.lightBlue :*/ Colors.grey,
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      child: Text(/*
-                        messagesList[index*//**//*]"*/"hi",
+                      child: Text(  authProvider!.messagelist![index].message.toString()      /*
+                        messagesList[index*//**//*]"*/,
                         style: TextStyle(color: Colors.white),
                       ),
                     ),

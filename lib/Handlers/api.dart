@@ -25,6 +25,7 @@ class API {
   static const idgetDetails = "${baseUrl}api/users/";
   static const conversation = "${baseUrl}api/";
   static const message = "${baseUrl}api/";
+  static const messageID = "${baseUrl}api/";
   static const conversationID = "${baseUrl}api/";
 
 }

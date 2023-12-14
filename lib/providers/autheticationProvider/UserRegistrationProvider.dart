@@ -13,6 +13,7 @@ import '../../Utils/Preferences.dart';
 import '../../Utils/colors.dart';
 import '../../auth/login.dart';
 import '../../models/conversationreciverlist.dart';
+import '../../models/messagelist.dart';
 import '../../models/userslist_model.dart';
 
 class AuthProvider with ChangeNotifier {
@@ -366,6 +367,7 @@ class AuthProvider with ChangeNotifier {
     }
 
    List<ConversationreciverData>? conversationDetailsList;
+   List<Messagelist>? messagelist;
   //fetch Conversation
   getConversationdetailsRecieveDeatilsList(String senderID, context) async {
     print("sssnnneder: $senderID");
@@ -468,22 +470,21 @@ class AuthProvider with ChangeNotifier {
   //fetch message
   getfetchMessage(String conversationID, context) async {
   print("sssnnneder: $conversationID");
-  var userIdutils;
-  String? userId = await Preferences.getUserId();
-  // userIdutils = Preferences.getUserId();
-  print(userIdutils);
+
+
   print(isgetLoading);
   isgetLoading = true;
   // notifyListeners();
 
-  final Uri uri = Uri.parse(API.conversationID +"conversations/"+ conversationID.toString()); // Assuming getUserById endpoint
-  print("urii ${uri}");
+  final Uri uri = Uri.parse(API.messageID +"message/"+ conversationID.toString()); // Assuming getUserById endpoint
+  print("urwii ${uri}");
   final response = await http.get(
   uri, headers: {
   'Content-Type': 'application/json',
   // Add any additional headers if required
   },);
-  print("uri");
+  print("uribody");
+  print("uribody${response}");
   print(response.body);
 
 
@@ -498,12 +499,12 @@ class AuthProvider with ChangeNotifier {
   final List<dynamic> responseData = json.decode(response.body);
   print("uri");
   print(responseData);
-  conversationDetailsList = responseData.map<ConversationreciverData>((data) {
-  return ConversationreciverData.fromJson(data);
+  messagelist = responseData.map<Messagelist>((data) {
+  return Messagelist.fromJson(data);
   }).toList();
-  print("222conversationreciverDataList");
+  print("22112conversationreciverDataList");
 
-  print(conversationDetailsList);
+  print(messagelist);
 
 
   // for(int i =0; i<=conversationDetailsList!.length;i++){
@@ -512,8 +513,8 @@ class AuthProvider with ChangeNotifier {
   //   print(conversationDetailsList);
   //
   // }
-  print(conversationDetailsList);
-  return conversationDetailsList;
+  print(messagelist);
+  return messagelist;
 
   // print("body of get1 user by ID: $body");
   // if (response.statusCode == 200 && body["st"] == "Success") {
