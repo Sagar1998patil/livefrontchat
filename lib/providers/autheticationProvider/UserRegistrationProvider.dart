@@ -476,7 +476,7 @@ class AuthProvider with ChangeNotifier {
   isgetLoading = true;
   // notifyListeners();
 
-  final Uri uri = Uri.parse(API.conversationID +"conversations/"+ senderID.toString()); // Assuming getUserById endpoint
+  final Uri uri = Uri.parse(API.conversationID +"conversations/"+ conversationID.toString()); // Assuming getUserById endpoint
   print("urii ${uri}");
   final response = await http.get(
   uri, headers: {

@@ -521,7 +521,7 @@ class _homeScreenState extends State<homeScreen> {
             Container(
               height: MediaQuery.of(context).size.height /
                   4,
-              child: ListView.builder(
+              child: authProvider!.conversationDetailsList!.length==null?Text("No Converesation"): ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: authProvider!.conversationDetailsList!.length,
                 // Use usersList instead of userList
@@ -669,7 +669,7 @@ class _homeScreenState extends State<homeScreen> {
                             print("Responsecheck: $value");
                           });},
 
-    child: Text('Send'))
+                        child: Text('Send'))
 
             ]  ),
             ),
